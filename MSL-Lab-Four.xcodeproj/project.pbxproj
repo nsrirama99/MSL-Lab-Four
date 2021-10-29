@@ -16,6 +16,10 @@
 		2E75ABC8272C989300844A0D /* MSL_Lab_FourTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75ABC7272C989300844A0D /* MSL_Lab_FourTests.swift */; };
 		2E75ABD2272C989300844A0D /* MSL_Lab_FourUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75ABD1272C989300844A0D /* MSL_Lab_FourUITests.swift */; };
 		2E75ABD4272C989300844A0D /* MSL_Lab_FourUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75ABD3272C989300844A0D /* MSL_Lab_FourUITestsLaunchTests.swift */; };
+		2E75ABE1272C98E000844A0D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75ABE0272C98E000844A0D /* TableViewController.swift */; };
+		2E75ABF4272C9BB700844A0D /* VideoAnalgesic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75ABF1272C9BB700844A0D /* VideoAnalgesic.swift */; };
+		2E75ABF5272C9BB700844A0D /* OpenCVBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E75ABF3272C9BB700844A0D /* OpenCVBridge.mm */; };
+		2E75ABF8272C9CE800844A0D /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E75ABF7272C9CE800844A0D /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,13 @@
 		2E75ABCD272C989300844A0D /* MSL-Lab-FourUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MSL-Lab-FourUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E75ABD1272C989300844A0D /* MSL_Lab_FourUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSL_Lab_FourUITests.swift; sourceTree = "<group>"; };
 		2E75ABD3272C989300844A0D /* MSL_Lab_FourUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSL_Lab_FourUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2E75ABE0272C98E000844A0D /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		2E75ABE2272C9AA400844A0D /* MSL-Lab-Four-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MSL-Lab-Four-Bridging-Header.h"; sourceTree = "<group>"; };
+		2E75ABF1272C9BB700844A0D /* VideoAnalgesic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoAnalgesic.swift; path = ImageDSPUtils/VideoAnalgesic.swift; sourceTree = "<group>"; };
+		2E75ABF2272C9BB700844A0D /* OpenCVBridge.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = OpenCVBridge.hh; path = ImageDSPUtils/OpenCVBridge.hh; sourceTree = "<group>"; };
+		2E75ABF3272C9BB700844A0D /* OpenCVBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OpenCVBridge.mm; path = ImageDSPUtils/OpenCVBridge.mm; sourceTree = "<group>"; };
+		2E75ABF6272C9C9B00844A0D /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		2E75ABF7272C9CE800844A0D /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ImageDSPUtils/opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E75ABF8272C9CE800844A0D /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +91,15 @@
 		2E75ABA4272C989100844A0D = {
 			isa = PBXGroup;
 			children = (
+				2E75ABF7272C9CE800844A0D /* opencv2.framework */,
+				2E75ABF2272C9BB700844A0D /* OpenCVBridge.hh */,
+				2E75ABF3272C9BB700844A0D /* OpenCVBridge.mm */,
+				2E75ABF1272C9BB700844A0D /* VideoAnalgesic.swift */,
 				2E75ABAF272C989100844A0D /* MSL-Lab-Four */,
 				2E75ABC6272C989300844A0D /* MSL-Lab-FourTests */,
 				2E75ABD0272C989300844A0D /* MSL-Lab-FourUITests */,
 				2E75ABAE272C989100844A0D /* Products */,
+				2E75ABE2272C9AA400844A0D /* MSL-Lab-Four-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,10 +119,12 @@
 				2E75ABB0272C989100844A0D /* AppDelegate.swift */,
 				2E75ABB2272C989100844A0D /* SceneDelegate.swift */,
 				2E75ABB4272C989100844A0D /* ViewController.swift */,
+				2E75ABE0272C98E000844A0D /* TableViewController.swift */,
 				2E75ABB6272C989100844A0D /* Main.storyboard */,
 				2E75ABB9272C989300844A0D /* Assets.xcassets */,
 				2E75ABBB272C989300844A0D /* LaunchScreen.storyboard */,
 				2E75ABBE272C989300844A0D /* Info.plist */,
+				2E75ABF6272C9C9B00844A0D /* PrefixHeader.pch */,
 			);
 			path = "MSL-Lab-Four";
 			sourceTree = "<group>";
@@ -195,6 +214,7 @@
 				TargetAttributes = {
 					2E75ABAC272C989100844A0D = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
 					};
 					2E75ABC2272C989300844A0D = {
 						CreatedOnToolsVersion = 13.1;
@@ -261,6 +281,9 @@
 				2E75ABB5272C989100844A0D /* ViewController.swift in Sources */,
 				2E75ABB1272C989100844A0D /* AppDelegate.swift in Sources */,
 				2E75ABB3272C989100844A0D /* SceneDelegate.swift in Sources */,
+				2E75ABF5272C9BB700844A0D /* OpenCVBridge.mm in Sources */,
+				2E75ABF4272C9BB700844A0D /* VideoAnalgesic.swift in Sources */,
+				2E75ABE1272C98E000844A0D /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,9 +460,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F69WJ27LN4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ImageDSPUtils",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MSL-Lab-Four/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -455,6 +483,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "SMU.MSL-Lab-Four";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MSL-Lab-Four-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -465,9 +495,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F69WJ27LN4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ImageDSPUtils",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MSL-Lab-Four/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -483,6 +518,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "SMU.MSL-Lab-Four";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MSL-Lab-Four-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
