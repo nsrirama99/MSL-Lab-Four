@@ -22,6 +22,14 @@ class ViewController: UIViewController   {
     let eyeSize = CGSize.init(width: 25.0, height: 25.0)
     let mouthSize = CGSize.init(width: 20.0, height: 50.0)
     
+    // Variables to store the current status of facial features:
+    // -1 if no faces are detected
+    // 0 if none of the facial features in the image are smiling/blinking
+    // 1 if any of the facial features are in the named state
+    var smiling = false
+    var blink_left = false
+    var blink_right = false
+    
     //MARK: Outlets in view
 //    @IBOutlet weak var flashSlider: UISlider!
 //    @IBOutlet weak var stageLabel: UILabel!
@@ -64,7 +72,28 @@ class ViewController: UIViewController   {
         let f = getFaces(img: inputImage)
         
         // if no faces, just return original image
-        if f.count == 0 { return inputImage }
+        if f.count == 0 {
+            self.smiling = -1
+            self.blink_left = -1
+            self.blink_right = -1
+            return inputImage
+        }
+        
+        // Check for blinking and smiling
+        self.smiling = 0
+        self.blink_left = 0
+        self.blink_right = 0
+        for face in f {
+            if (face.hasSmile) {
+                self.smiling = 1
+            }
+            if (face.leftEyeClosed) {
+                self.blink_left = 1
+            }
+            if (face.rightEyeClosed) {
+                self.blink_right = 1
+            }
+        }
         
         var retImage = inputImage
         
