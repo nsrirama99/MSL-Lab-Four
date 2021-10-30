@@ -31,15 +31,42 @@ class TableViewController: UITableViewController {
         return 1
     }
 
-    /*
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//        if(indexPath.section == 0) {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath)
+//
+//            cell.textLabel!.text = "Module A"
+//            return cell
+//
+//        } else {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath)
+//            cell.textLabel!.text = "Module B"
+//            return cell
+//        }
+//    }
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
+        if(indexPath.section == 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath)
+
+            cell.textLabel!.text = "Module A"
+            return cell
+
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath)
+            cell.textLabel!.text = "Module B"
+            return cell
+        }
+        
         // Configure the cell...
 
-        return cell
+        //return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

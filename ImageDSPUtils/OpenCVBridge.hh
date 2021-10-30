@@ -31,6 +31,11 @@
 // call this to perfrom processing (user controlled for better transparency)
 -(void)processImage;
 
+// used to identify and outline facial features
+-(void)processFace;
+-(void)processEyes;
+-(void)processMouth;
+
 // for the video manager transformations
 -(void)setTransforms:(CGAffineTransform)trans;
 

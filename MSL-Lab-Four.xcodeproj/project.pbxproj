@@ -20,6 +20,7 @@
 		2E75ABF4272C9BB700844A0D /* VideoAnalgesic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75ABF1272C9BB700844A0D /* VideoAnalgesic.swift */; };
 		2E75ABF5272C9BB700844A0D /* OpenCVBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E75ABF3272C9BB700844A0D /* OpenCVBridge.mm */; };
 		2E75ABF8272C9CE800844A0D /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E75ABF7272C9CE800844A0D /* opencv2.framework */; };
+		2E75ABFA272C9EBE00844A0D /* ModuleBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75ABF9272C9EBE00844A0D /* ModuleBViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		2E75ABF3272C9BB700844A0D /* OpenCVBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OpenCVBridge.mm; path = ImageDSPUtils/OpenCVBridge.mm; sourceTree = "<group>"; };
 		2E75ABF6272C9C9B00844A0D /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		2E75ABF7272C9CE800844A0D /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ImageDSPUtils/opencv2.framework; sourceTree = "<group>"; };
+		2E75ABF9272C9EBE00844A0D /* ModuleBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				2E75ABB0272C989100844A0D /* AppDelegate.swift */,
 				2E75ABB2272C989100844A0D /* SceneDelegate.swift */,
 				2E75ABB4272C989100844A0D /* ViewController.swift */,
+				2E75ABF9272C9EBE00844A0D /* ModuleBViewController.swift */,
 				2E75ABE0272C98E000844A0D /* TableViewController.swift */,
 				2E75ABB6272C989100844A0D /* Main.storyboard */,
 				2E75ABB9272C989300844A0D /* Assets.xcassets */,
@@ -283,6 +286,7 @@
 				2E75ABB3272C989100844A0D /* SceneDelegate.swift in Sources */,
 				2E75ABF5272C9BB700844A0D /* OpenCVBridge.mm in Sources */,
 				2E75ABF4272C9BB700844A0D /* VideoAnalgesic.swift in Sources */,
+				2E75ABFA272C9EBE00844A0D /* ModuleBViewController.swift in Sources */,
 				2E75ABE1272C98E000844A0D /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +468,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F69WJ27LN4;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ImageDSPUtils",
@@ -475,6 +480,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -499,6 +505,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F69WJ27LN4;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ImageDSPUtils",
@@ -510,6 +517,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

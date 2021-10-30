@@ -35,6 +35,7 @@ using namespace cv;
     const int kCannyLowThreshold = 300;
     const int kFilterKernelSize = 5;
     
+    cv::rectangle( _image, cvPoint(0, 0), cvPoint(_image.rows, _image.cols), Scalar(0,0,0,255));
     
     
     
@@ -251,6 +252,19 @@ using namespace cv;
             break;
             
     }
+}
+
+-(void)processFace {
+    cv::rectangle( _image, cvPoint(0, 0), cvPoint(_image.rows, _image.cols), Scalar(255,0,255,0));
+}
+
+-(void)processEyes {
+    //circle( _image, center, 3, Scalar(0,255,0,255), -1, 8, 0 );
+    circle( _image, cvPoint(_image.rows/2, _image.cols/2), 7, Scalar(0, 0, 255, 0), 2, 8, 0);
+}
+
+-(void)processMouth {
+    cv::rectangle( _image, cvPoint(0, 0), cvPoint(_image.cols, _image.rows), Scalar(255,0,0,0));
 }
 
 
