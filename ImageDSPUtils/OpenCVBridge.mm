@@ -254,8 +254,29 @@ using namespace cv;
     }
 }
 
--(void)processFace {
+-(void)processFace{
+    
+    
     cv::rectangle( _image, cvPoint(0, 0), cvPoint(_image.rows, _image.cols), Scalar(255,0,255,0));
+    
+    
+    
+}
+
+-(void)processFeatures:(bool)isSmiling
+    leftBlink:(bool)left
+    rightBlink:(bool)right {
+    char text[50];
+    
+    sprintf(text,"Smiling: %s", isSmiling ? "Yes":"No");
+    cv::putText(_image, text, cv::Point(0, 10), FONT_HERSHEY_PLAIN, 0.5, Scalar::all(255), 1, 2);
+    
+    sprintf(text,"Left Blink: %s ", left ? "Yes":"No");
+    cv::putText(_image, text, cv::Point(0, 20), FONT_HERSHEY_PLAIN, 0.5, Scalar::all(255), 1, 2);
+    
+    sprintf(text,"Right Blink: %s", right ? "Yes":"No");
+    cv::putText(_image, text, cv::Point(0, 30), FONT_HERSHEY_PLAIN, 0.5, Scalar::all(255), 1, 2);
+
 }
 
 -(void)processEyes {

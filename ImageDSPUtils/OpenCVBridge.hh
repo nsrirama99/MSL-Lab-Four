@@ -33,6 +33,9 @@
 
 // used to identify and outline facial features
 -(void)processFace;
+-(void)processFeatures:(bool)isSmiling
+    leftBlink:(bool)left
+    rightBlink:(bool)right;
 -(void)processEyes;
 -(void)processMouth;
 

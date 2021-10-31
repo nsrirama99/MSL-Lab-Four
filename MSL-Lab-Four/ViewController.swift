@@ -73,28 +73,12 @@ class ViewController: UIViewController   {
         
         // if no faces, just return original image
         if f.count == 0 {
-            self.smiling = -1
-            self.blink_left = -1
-            self.blink_right = -1
+            self.smiling = false
+            self.blink_left = false
+            self.blink_right = false
             return inputImage
         }
-        
-        // Check for blinking and smiling
-        self.smiling = 0
-        self.blink_left = 0
-        self.blink_right = 0
-        for face in f {
-            if (face.hasSmile) {
-                self.smiling = 1
-            }
-            if (face.leftEyeClosed) {
-                self.blink_left = 1
-            }
-            if (face.rightEyeClosed) {
-                self.blink_right = 1
-            }
-        }
-        
+                
         var retImage = inputImage
         
         
@@ -141,6 +125,9 @@ class ViewController: UIViewController   {
         var filterCenter = CGPoint()
         
         for f in features {
+            self.smiling = false
+            self.blink_left = false
+            self.blink_right = false
             //set where to apply filter
             filterCenter.x = f.bounds.midX
             filterCenter.y = f.bounds.midY
@@ -154,6 +141,15 @@ class ViewController: UIViewController   {
             retImage = self.bridge.getImageComposite()
             
             if(f.hasMouthPosition) {
+                //check for smiling
+                print(f.hasSmile)
+                print(f.leftEyeClosed)
+                print(f.rightEyeClosed)
+                
+                
+                if (f.hasSmile) {
+                    self.smiling = true
+                }
                 
                 let loc = CGPoint.init(x: (f.mouthPosition.x-(mouthSize.width/2)), y: f.mouthPosition.y-(mouthSize.height/2)) //-(mouthSize.width/2) -(mouthSize.height/2)
                 let rect = CGRect.init(origin: loc, size: mouthSize)
@@ -168,6 +164,11 @@ class ViewController: UIViewController   {
             }
             
             if(f.hasLeftEyePosition) {
+                //check for left blink
+                if (f.leftEyeClosed) {
+                    self.blink_left = true
+                }
+                
                 let loc = CGPoint.init(x: f.leftEyePosition.x-(eyeSize.width/2), y: f.leftEyePosition.y-(eyeSize.height/2))
                 let rect = CGRect.init(origin: loc, size: eyeSize)
 
@@ -184,6 +185,12 @@ class ViewController: UIViewController   {
             }
             
             if(f.hasRightEyePosition) {
+                //check for right blink
+                if (f.rightEyeClosed) {
+                    self.blink_right = true
+                }
+
+                
                 let loc = CGPoint.init(x: f.rightEyePosition.x-(eyeSize.width/2), y: f.rightEyePosition.y-(eyeSize.height/2))
                 let rect = CGRect.init(origin: loc, size: eyeSize)
                 //{loc, {self.eyeWidth, self.eyeHeight}}
@@ -199,6 +206,14 @@ class ViewController: UIViewController   {
                 retImage = self.bridge.getImageComposite()
             }
             
+
+            self.bridge.setImage(retImage,
+                                 withBounds: f.bounds, // the first face bounds
+                                 andContext: self.videoManager.getCIContext())
+            
+            self.bridge.processFeatures(self.smiling, leftBlink: self.blink_left, rightBlink: self.blink_right)
+            retImage = self.bridge.getImageComposite()
+            
             //do for each filter (assumes all filters have property, "inputCenter")
 //            for filt in filters{
 //                filt.setValue(retImage, forKey: kCIInputImageKey)
@@ -213,7 +228,9 @@ class ViewController: UIViewController   {
     //MARK: Setup Face Detection
     func getFaces(img:CIImage) -> [CIFaceFeature]{
         // this ungodly mess makes sure the image is the correct orientation
-        let optsFace = [CIDetectorImageOrientation:self.videoManager.ciOrientation]
+        let optsFace = [CIDetectorImageOrientation:self.videoManager.ciOrientation,
+                                   CIDetectorSmile:true,
+                                CIDetectorEyeBlink:true] as [String : Any]
         // get Face Features
         return self.detector.features(in: img, options: optsFace) as! [CIFaceFeature]
         
