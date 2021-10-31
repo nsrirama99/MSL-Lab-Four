@@ -13,6 +13,8 @@ class ViewController: UIViewController   {
 
     //MARK: Class Properties
     var filters : [CIFilter]! = nil
+    var mouthFilters : [CIFilter]! = nil
+    var eyeFilters : [CIFilter]! = nil
     var videoManager:VideoAnalgesic! = nil
     let pinchFilterIndex = 2
     var detector:CIDetector! = nil
@@ -99,12 +101,22 @@ class ViewController: UIViewController   {
     
     func setupFilters(){
         filters = []
+        eyeFilters = []
+        mouthFilters = []
         
-        let filterComic = CIFilter(name:"CIComicEffect")!
-        //filterPinch.setValue(-0.5, forKey: "inputScale")
-        //filterPinch.setValue(75, forKey: "inputRadius")
-        filters.append(filterComic)
+        let filterPinch = CIFilter(name:"CIBumpDistortion")!
+        filterPinch.setValue(1, forKey: "inputScale")
+        filterPinch.setValue(75, forKey: "inputRadius")
+        filters.append(filterPinch)
         
+        
+        let filterHole = CIFilter(name: "CIHoleDistortion")!
+        filterHole.setValue(20, forKey: "inputRadius")
+        eyeFilters.append(filterHole)
+        
+        let filterPoint = CIFilter(name: "CIVortexDistortion")!
+        filterPoint.setValue(50, forKey: "inputRadius")
+        mouthFilters.append(filterPoint)
     }
     
     func applyFiltersToFaces(inputImage:CIImage,features:[CIFaceFeature])->CIImage{
@@ -116,64 +128,70 @@ class ViewController: UIViewController   {
             filterCenter.x = f.bounds.midX
             filterCenter.y = f.bounds.midY
             
-            self.bridge.setTransforms(self.videoManager.transform)
-            self.bridge.setImage(retImage,
-                                 withBounds: f.bounds, // the first face bounds
-                                 andContext: self.videoManager.getCIContext())
-            
-            self.bridge.processFace()
-            retImage = self.bridge.getImageComposite()
-            
+//            self.bridge.setTransforms(self.videoManager.transform)
+//            self.bridge.setImage(retImage,
+//                                 withBounds: f.bounds, // the first face bounds
+//                                 andContext: self.videoManager.getCIContext())
+//
+//            self.bridge.processFace()
+//            retImage = self.bridge.getImageComposite()
+//
             if(f.hasMouthPosition) {
-                
-                let loc = CGPoint.init(x: (f.mouthPosition.x-(mouthSize.width/2)), y: f.mouthPosition.y-(mouthSize.height/2)) //-(mouthSize.width/2) -(mouthSize.height/2)
+
+                let loc = CGPoint.init(x: (f.mouthPosition.x), y: f.mouthPosition.y) //-(mouthSize.width/2) -(mouthSize.height/2)
                 let rect = CGRect.init(origin: loc, size: mouthSize)
-                
-                self.bridge.setImage(retImage,
-                                     withBounds: rect, // the first face bounds
-                                     andContext: self.videoManager.getCIContext())
-                
-                self.bridge.processMouth()
-                retImage = self.bridge.getImageComposite()
-                
+
+//                self.bridge.setImage(retImage,
+//                                     withBounds: rect, // the first face bounds
+//                                     andContext: self.videoManager.getCIContext())
+//
+//                self.bridge.processMouth()
+//                retImage = self.bridge.getImageComposite()
+                mouthFilters[0].setValue(retImage, forKey: kCIInputImageKey)
+                mouthFilters[0].setValue(CIVector(cgPoint: loc), forKey: "inputCenter")
+                retImage = mouthFilters[0].outputImage!
             }
-            
+
             if(f.hasLeftEyePosition) {
-                let loc = CGPoint.init(x: f.leftEyePosition.x-(eyeSize.width/2), y: f.leftEyePosition.y-(eyeSize.height/2))
+                let loc = CGPoint.init(x: f.leftEyePosition.x, y: f.leftEyePosition.y)
                 let rect = CGRect.init(origin: loc, size: eyeSize)
 
-                //{loc, {self.eyeWidth, self.eyeHeight}}
-
-                
-                //self.bridge.setTransforms(self.videoManager.transform)
-                self.bridge.setImage(retImage,
-                                     withBounds: rect,
-                                     andContext: self.videoManager.getCIContext())
-                
-                self.bridge.processEyes()
-                retImage = self.bridge.getImageComposite()
+                eyeFilters[0].setValue(retImage, forKey: kCIInputImageKey)
+                eyeFilters[0].setValue(CIVector(cgPoint: loc), forKey: "inputCenter")
+                retImage = eyeFilters[0].outputImage!
+//                self.bridge.setImage(retImage,
+//                                     withBounds: rect,
+//                                     andContext: self.videoManager.getCIContext())
+//
+//                self.bridge.processEyes()
+//                retImage = self.bridge.getImageComposite()
             }
-            
+
             if(f.hasRightEyePosition) {
-                let loc = CGPoint.init(x: f.rightEyePosition.x-(eyeSize.width/2), y: f.rightEyePosition.y-(eyeSize.height/2))
+                let loc = CGPoint.init(x: f.rightEyePosition.x, y: f.rightEyePosition.y)
                 let rect = CGRect.init(origin: loc, size: eyeSize)
-                //{loc, {self.eyeWidth, self.eyeHeight}}
 
-
-                
-                //self.bridge.setTransforms(self.videoManager.transform)
-                self.bridge.setImage(retImage,
-                                     withBounds: rect,
-                                     andContext: self.videoManager.getCIContext())
-                
-                self.bridge.processEyes()
-                retImage = self.bridge.getImageComposite()
+                eyeFilters[0].setValue(retImage, forKey: kCIInputImageKey)
+                eyeFilters[0].setValue(CIVector(cgPoint: loc), forKey: "inputCenter")
+                retImage = eyeFilters[0].outputImage!
+//                self.bridge.setImage(retImage,
+//                                     withBounds: rect,
+//                                     andContext: self.videoManager.getCIContext())
+//
+//                self.bridge.processEyes()
+//                retImage = self.bridge.getImageComposite()
             }
             
+            
+            filters[0].setValue(retImage, forKey: kCIInputImageKey)
+            filters[0].setValue(CIVector(cgPoint: filterCenter), forKey: "inputCenter")
+            retImage = filters[0].outputImage!
             //do for each filter (assumes all filters have property, "inputCenter")
 //            for filt in filters{
+//                let filterkeys = filt.inputKeys
 //                filt.setValue(retImage, forKey: kCIInputImageKey)
-//                filt.setValue(CIVector(cgPoint: filterCenter), forKey: "inputCenter")
+//
+//                if(filterkeys.contains(kCIInputCenterKey)) {filt.setValue(CIVector(cgPoint: filterCenter), forKey: "inputCenter")}
 //                // could also manipulate the radius of the filter based on face size!
 //                retImage = filt.outputImage!
 //            }
