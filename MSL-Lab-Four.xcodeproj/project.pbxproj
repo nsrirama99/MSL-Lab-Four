@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E859C89272F6DC6006432E8 /* MetalGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E859C88272F6DC6006432E8 /* MetalGraph.swift */; };
+		1E859C8B272F6DF7006432E8 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1E859C8A272F6DF7006432E8 /* Shaders.metal */; };
+		1E859C8D272F6EC0006432E8 /* CircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E859C8C272F6EC0006432E8 /* CircularBuffer.m */; };
+		1E859C91272F6F42006432E8 /* fftHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E859C90272F6F42006432E8 /* fftHelper.m */; };
 		2E75ABB1272C989100844A0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75ABB0272C989100844A0D /* AppDelegate.swift */; };
 		2E75ABB3272C989100844A0D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75ABB2272C989100844A0D /* SceneDelegate.swift */; };
 		2E75ABB5272C989100844A0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75ABB4272C989100844A0D /* ViewController.swift */; };
@@ -41,6 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E859C88272F6DC6006432E8 /* MetalGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalGraph.swift; sourceTree = "<group>"; };
+		1E859C8A272F6DF7006432E8 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		1E859C8C272F6EC0006432E8 /* CircularBuffer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircularBuffer.m; sourceTree = "<group>"; };
+		1E859C8E272F6ED7006432E8 /* CircularBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircularBuffer.h; sourceTree = "<group>"; };
+		1E859C8F272F6F30006432E8 /* fftHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fftHelper.h; sourceTree = "<group>"; };
+		1E859C90272F6F42006432E8 /* fftHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fftHelper.m; sourceTree = "<group>"; };
 		2E75ABAD272C989100844A0D /* MSL-Lab-Four.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MSL-Lab-Four.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E75ABB0272C989100844A0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E75ABB2272C989100844A0D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +138,12 @@
 				2E75ABBB272C989300844A0D /* LaunchScreen.storyboard */,
 				2E75ABBE272C989300844A0D /* Info.plist */,
 				2E75ABF6272C9C9B00844A0D /* PrefixHeader.pch */,
+				1E859C88272F6DC6006432E8 /* MetalGraph.swift */,
+				1E859C8A272F6DF7006432E8 /* Shaders.metal */,
+				1E859C8C272F6EC0006432E8 /* CircularBuffer.m */,
+				1E859C8E272F6ED7006432E8 /* CircularBuffer.h */,
+				1E859C8F272F6F30006432E8 /* fftHelper.h */,
+				1E859C90272F6F42006432E8 /* fftHelper.m */,
 			);
 			path = "MSL-Lab-Four";
 			sourceTree = "<group>";
@@ -281,10 +297,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E859C8D272F6EC0006432E8 /* CircularBuffer.m in Sources */,
+				1E859C89272F6DC6006432E8 /* MetalGraph.swift in Sources */,
+				1E859C91272F6F42006432E8 /* fftHelper.m in Sources */,
 				2E75ABB5272C989100844A0D /* ViewController.swift in Sources */,
 				2E75ABB1272C989100844A0D /* AppDelegate.swift in Sources */,
 				2E75ABB3272C989100844A0D /* SceneDelegate.swift in Sources */,
 				2E75ABF5272C9BB700844A0D /* OpenCVBridge.mm in Sources */,
+				1E859C8B272F6DF7006432E8 /* Shaders.metal in Sources */,
 				2E75ABF4272C9BB700844A0D /* VideoAnalgesic.swift in Sources */,
 				2E75ABFA272C9EBE00844A0D /* ModuleBViewController.swift in Sources */,
 				2E75ABE1272C98E000844A0D /* TableViewController.swift in Sources */,
@@ -467,7 +487,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F69WJ27LN4;
+				DEVELOPMENT_TEAM = 3PH8Q4RRFW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -504,7 +524,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F69WJ27LN4;
+				DEVELOPMENT_TEAM = 3PH8Q4RRFW;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

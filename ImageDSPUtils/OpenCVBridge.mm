@@ -456,6 +456,63 @@ using namespace cv;
 }
 
 
+Float64 red[1200];
+int pos = 0;
+bool filledArray = false;
+bool found = false;
+-(void) processFinger{
+    cv::Mat frame_gray,image_copy;
+    //bool retValue = false;
+    
+// fine, adding scoping to case statements to get rid of jump errors
+    char text[50];
+    Scalar avgPixelIntensity;
+    
+    //The Blue and the Red channels are in the opposite order of how they're defined in the  CV function names, it should be named RGB not BGR for clarity
+    cvtColor(_image, image_copy, CV_BGRA2BGR); // get rid of alpha for processing
+    avgPixelIntensity = cv::mean( image_copy );
+
+    sprintf(text,"Avg. R: %.0f",avgPixelIntensity.val[0]);
+    cv::putText(_image, text, cv::Point(0, 20), FONT_HERSHEY_PLAIN, 0.75, Scalar::all(255), 1, 2);
+    
+    
+    red[pos] = avgPixelIntensity.val[0];
+    
+    
+    
+    pos = (pos + 1) % 1200; //cycle through all of array
+    if(pos == 0){
+        //peak finding
+        int counter = 0;
+        
+        for(int j = 0; j < 1200; j++){
+            
+            int end = j + 15;
+            int center = j + 15/2;
+            
+            float largest = 0;
+            
+            for(int i = j; i < end; i++){
+                if(red[i] > largest){
+                    largest = red[i];
+                }
+            }
+            if (red[center] == largest) {
+                counter += 1;
+            }
+            
+        }
+        
+        int bpm = counter * 3;
+        sprintf(text,"BPM : %d",bpm);
+        printf("%d",bpm);
+        cv::putText(_image, text, cv::Point(10, 30), FONT_HERSHEY_PLAIN, 0.75, Scalar::all(255), 1, 2);
+
+    }
+        
+}
+
+
 
 
 @end
