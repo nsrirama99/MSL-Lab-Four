@@ -31,7 +31,7 @@
 // call this to perfrom processing (user controlled for better transparency)
 -(void)processImage;
 
-// used to identify and outline facial features
+// functions used to identify and outline facial features
 -(void)processFace;
 -(void)processFeatures:(bool)isSmiling
     leftBlink:(bool)left

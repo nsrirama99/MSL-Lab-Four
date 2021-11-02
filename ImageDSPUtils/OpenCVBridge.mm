@@ -254,20 +254,19 @@ using namespace cv;
     }
 }
 
+//process the existence of a face
 -(void)processFace{
-    
-    
+    //draw a border around the face
     cv::rectangle( _image, cvPoint(0, 0), cvPoint(_image.rows, _image.cols), Scalar(255,0,255,0));
-    
-    
-    
 }
 
+//process facial features: smiling, blinking (eyes done separately)
 -(void)processFeatures:(bool)isSmiling
     leftBlink:(bool)left
     rightBlink:(bool)right {
     char text[50];
     
+    // For each facial feature that we're identifying, add text with simple Yes/No tags
     sprintf(text,"Smiling: %s", isSmiling ? "Yes":"No");
     cv::putText(_image, text, cv::Point(0, 10), FONT_HERSHEY_PLAIN, 0.5, Scalar::all(255), 1, 2);
     
@@ -279,12 +278,15 @@ using namespace cv;
 
 }
 
+//process eyes on a face
 -(void)processEyes {
-    //circle( _image, center, 3, Scalar(0,255,0,255), -1, 8, 0 );
+    //draws blue circles around the eyes
     circle( _image, cvPoint(_image.rows/2, _image.cols/2), 7, Scalar(0, 0, 255, 0), 2, 8, 0);
 }
 
+//process mouth within a face
 -(void)processMouth {
+    //puts box "around" a mouth. The box tends to be a really rough outline, won't always cover the whole thing
     cv::rectangle( _image, cvPoint(0, 0), cvPoint(_image.cols, _image.rows), Scalar(255,0,0,0));
 }
 
