@@ -29,31 +29,26 @@
         <scene sceneID="Osf-bE-moa">
             <objects>
                 <viewController id="r0S-lf-3x0" customClass="ModuleBViewController" customModule="MSL_Lab_Four" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nNN-uw-fun">
+                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="nNN-uw-fun">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vSA-D1-5Ub">
-                                <rect key="frame" x="174" y="691" width="67" height="31"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CsK-Lh-rDm">
+                                <rect key="frame" x="87" y="499" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="flash:" destination="r0S-lf-3x0" eventType="touchUpInside" id="fv6-HF-BcC"/>
-                                </connections>
-                            </button>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hZy-qF-HP7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="4Sp-Ri-YdY"/>
                     <connections>
-                        <outlet property="flashButton" destination="vSA-D1-5Ub" id="MP0-Yk-27t"/>
+                        <outlet property="graphView" destination="CsK-Lh-rDm" id="ikX-SR-AsY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gns-8U-7cG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1596" y="748"/>
+            <point key="canvasLocation" x="1595.6521739130435" y="747.99107142857144"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="SZq-aT-M8i">

@@ -458,60 +458,81 @@ using namespace cv;
 }
 
 
-Float64 red[1200];
+Float64 red[600];
 int pos = 0;
 bool filledArray = false;
 bool found = false;
--(void) processFinger{
+int bpm = 0;
+-(Float64) processFinger{
     cv::Mat frame_gray,image_copy;
-    //bool retValue = false;
     
-// fine, adding scoping to case statements to get rid of jump errors
     char text[50];
     Scalar avgPixelIntensity;
     
-    //The Blue and the Red channels are in the opposite order of how they're defined in the  CV function names, it should be named RGB not BGR for clarity
+    
     cvtColor(_image, image_copy, CV_BGRA2BGR); // get rid of alpha for processing
     avgPixelIntensity = cv::mean( image_copy );
 
+    //Display redness average on screen
     sprintf(text,"Avg. R: %.0f",avgPixelIntensity.val[0]);
-    cv::putText(_image, text, cv::Point(0, 20), FONT_HERSHEY_PLAIN, 0.75, Scalar::all(255), 1, 2);
+    cv::putText(_image, text, cv::Point(5, 30), FONT_HERSHEY_PLAIN, 0.75, Scalar::all(255), 1, 2);
     
     
     red[pos] = avgPixelIntensity.val[0];
     
-    
-    
-    pos = (pos + 1) % 1200; //cycle through all of array
+    //Circular Buffer to look for peaks within the redness data
+    pos = (pos + 1) % 600; //cycle through all of array
     if(pos == 0){
         //peak finding
         int counter = 0;
         
-        for(int j = 0; j < 1200; j++){
+        for(int j = 0; j < 600; j++){
             
+            //set window size for peak searching
             int end = j + 15;
             int center = j + 15/2;
             
-            float largest = 0;
-            
+            //largest will be the the peak threshhold
+            Float64 largest = 0;
+    
+            //loop through to find peak
             for(int i = j; i < end; i++){
                 if(red[i] > largest){
                     largest = red[i];
                 }
             }
+            //count the amount of peaks that match the threshhold
             if (red[center] == largest) {
                 counter += 1;
             }
-            
         }
-        
-        int bpm = counter * 3;
-        sprintf(text,"BPM : %d",bpm);
-        printf("%d",bpm);
-        cv::putText(_image, text, cv::Point(10, 30), FONT_HERSHEY_PLAIN, 0.75, Scalar::all(255), 1, 2);
-
+        //counter is looking every 20 seconds so will need to multiple by 3 to get bpm
+        bpm = counter * 3;
+       
     }
+    
+    //Display BPM on screen
+    sprintf(text,"BPM : %d",bpm);
+    cv::putText(_image, text, cv::Point(10, 40), FONT_HERSHEY_PLAIN, 0.75, Scalar::all(255), 1, 2);
+    
+    
+    return (avgPixelIntensity.val[0] / 500) - 0.2 ;
+}
+-(bool) fingerOverLight{
+    cv::Mat frame_gray,image_copy;
         
+        Scalar avgPixelIntensity;
+        
+        cvtColor(_image, image_copy, CV_BGRA2BGR);
+        avgPixelIntensity = cv::mean( image_copy );
+        
+        //Checking RGB values to see if finger is covered over
+        if((avgPixelIntensity.val[0] + avgPixelIntensity.val[1] + avgPixelIntensity.val[2]) < 150) {
+            found = true;
+        } else {
+            found = false;
+        }
+        return found;
 }
 
 

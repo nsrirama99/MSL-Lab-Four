@@ -38,7 +38,8 @@
     rightBlink:(bool)right;
 -(void)processEyes;
 -(void)processMouth;
--(void)processFinger;
+-(Float64)processFinger;
+-(bool)fingerOverLight;
 
 // for the video manager transformations
 -(void)setTransforms:(CGAffineTransform)trans;
